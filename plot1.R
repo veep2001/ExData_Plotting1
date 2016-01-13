@@ -1,0 +1,8 @@
+rm(list=ls())
+dataplot1 <- fread("~/OneDrive/Documents/Coursera/DataScience/EDA/data/household_power_consumption.txt", header=TRUE, sep = ";", na.strings=c("?"))
+dataplot1$Date <- as.Date(dataplot1$Date, format = "%d/%m/%Y")
+pl1data <-subset(dataplot1, Date >= "2007-02-01" & Date <= "2007-02-02")
+pl1data$Global_active_power <- as.numeric(pl1data$Global_active_power)
+png(file="plot1.png", width = 480, height = 480)
+hist(pl1data$Global_active_power, main = "Global Active Power", col="red", xlab ="Global Active Power (kilowatts)")
+dev.off()
